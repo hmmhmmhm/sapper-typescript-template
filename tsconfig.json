@@ -1,0 +1,33 @@
+{
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules/*"
+    ],
+    "compilerOptions": {
+        "target": "ES3",
+        "module": "ESNext",
+        "noImplicitAny": false,
+        "noImplicitThis": false,
+        "moduleResolution": "node",
+        "types": [
+            "node",
+            "svelte"
+        ],
+        "lib": [
+            "DOM",
+            "ES2015"
+        ],
+        "allowSyntheticDefaultImports": true,
+        "esModuleInterop": true,
+        "forceConsistentCasingInFileNames": true,
+        "noImplicitReturns": true,
+        "strictNullChecks": true,
+        "suppressImplicitAnyIndexErrors": true,
+        "resolveJsonModule": true,
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "baseUrl": "."
+    }
+}

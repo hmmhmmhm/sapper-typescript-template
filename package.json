@@ -1,0 +1,43 @@
+{
+    "name": "sapper-typescript-template",
+    "version": "1.0.0",
+    "scripts": {
+        "start": "cross-env NODE_OPTIONS=--no-warnings sapper dev --output ./node_modules/@sapper",
+        "export-static": "cross-env NODE_OPTIONS=--no-warnings sapper export --legacy",
+        "production-build": "cross-env NODE_OPTIONS=--no-warnings NODE_ENV=production sapper build --legacy",
+        "production-start": "cross-env NODE_OPTIONS=--no-warnings NODE_ENV=production node __sapper__/build",
+        "lint": "prettier --write ./src/**/*.{ts,js,html,svelte}",
+        "clean": "rm -rf ./__sapper__"
+    },
+    "dependencies": {
+        "compression": "^1.7.4",
+        "polka": "^0.5.2",
+        "sirv": "^1.0.1"
+    },
+    "devDependencies": {
+        "@babel/core": "^7.10.3",
+        "@babel/plugin-syntax-dynamic-import": "^7.8.3",
+        "@babel/plugin-transform-runtime": "^7.10.3",
+        "@babel/preset-env": "^7.10.3",
+        "@babel/runtime": "^7.10.3",
+        "@pyoner/svelte-ts-preprocess": "^1.2.1",
+        "@types/node": "^14.0.14",
+        "autoprefixer": "^9.8.4",
+        "cross-env": "^7.0.2",
+        "prettier": "^2.0.5",
+        "prettier-plugin-svelte": "^1.1.0",
+        "rollup": "^2.18.1",
+        "rollup-plugin-babel": "^4.4.0",
+        "rollup-plugin-commonjs": "^10.1.0",
+        "rollup-plugin-node-resolve": "^5.2.0",
+        "rollup-plugin-replace": "^2.2.0",
+        "rollup-plugin-svelte": "^5.2.3",
+        "rollup-plugin-terser": "^6.1.0",
+        "rollup-plugin-typescript2": "^0.27.1",
+        "sapper": "^0.27.16",
+        "svelte": "^3.23.2",
+        "svelte-preprocess": "^3.9.10",
+        "temp-dir": "^2.0.0",
+        "typescript": "^3.9.5"
+    }
+}
