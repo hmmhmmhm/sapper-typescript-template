@@ -8,6 +8,10 @@ import * as sapper from '@sapper/server'
 const { PORT, NODE_ENV } = process.env
 const dev = NODE_ENV === 'development'
 
+/**
+ * @description
+ * * Remember, HMR does not apply to this file.
+ */
 polka() // You can also use Express
     .use(
         compression({ threshold: 0 }),
