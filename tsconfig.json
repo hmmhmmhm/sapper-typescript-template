@@ -17,6 +17,7 @@
         ],
         "lib": [
             "DOM",
+            "WebWorker",
             "ES2015"
         ],
         "allowSyntheticDefaultImports": true,

@@ -1,4 +1,6 @@
+// @ts-ignore
 import { timestamp, files, shell, routes } from '@sapper/service-worker'
+declare var self: ServiceWorkerGlobalScope; export { }
 
 const ASSETS = `cache${timestamp}`
 
@@ -49,7 +51,8 @@ self.addEventListener('fetch', (event) => {
 
     // always serve static files and bundler-generated assets from cache
     if (url.host === self.location.host && cached.has(url.pathname)) {
-        event.respondWith(caches.match(event.request))
+        let cache = caches.match(event.request)
+        if (cache) event.respondWith(cache as Promise<Response>)
         return
     }
 

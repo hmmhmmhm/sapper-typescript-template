@@ -1,6 +1,8 @@
 import sirv from 'sirv'
 import polka from 'polka'
 import compression from 'compression'
+
+// @ts-ignore
 import * as sapper from '@sapper/server'
 
 const { PORT, NODE_ENV } = process.env

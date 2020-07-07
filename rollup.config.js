@@ -3,17 +3,70 @@ import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
 import svelte from 'rollup-plugin-svelte'
 import babel from 'rollup-plugin-babel'
-import config from 'sapper/config/rollup.js'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
+
+import config from 'sapper/config/rollup.js'
 import pkg from './package.json'
 
 const mode = process.env.NODE_ENV
 const dev = mode === 'development'
+
 const legacy = !!process.env.SAPPER_LEGACY_BUILD
+const sourcemap = dev ? 'inline' : false
 
 const onwarn = (warning, onwarn) =>
     (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning)
+
+const src = `${process.cwd()}/src`
+let dest = `${process.cwd()}/__sapper__/dev`
+if (!dev) dest = `${process.cwd()}/__sapper__/build`
+
+config.client = {
+    input: () => {
+        return `${src}/client.ts`
+    },
+
+    output: () => {
+        let dir = `${dest}/client`
+        if (process.env.SAPPER_LEGACY_BUILD) dir += `/legacy`
+
+        return {
+            dir,
+            entryFileNames: '[name].[hash].js',
+            chunkFileNames: '[name].[hash].js',
+            format: 'esm',
+            sourcemap
+        }
+    },
+}
+config.server = {
+    input: () => {
+        return {
+            server: `${src}/server.ts`
+        };
+    },
+    output: () => {
+        return {
+            dir: `${dest}/server`,
+            format: 'cjs',
+            sourcemap
+        }
+    },
+}
+config.serviceworker = {
+    input: () => {
+        return `${src}/service-worker.ts`
+    },
+
+    output: () => {
+        return {
+            file: `${dest}/service-worker.js`,
+            format: 'iife',
+            sourcemap
+        }
+    },
+}
 
 export default {
     client: {
@@ -111,6 +164,10 @@ export default {
                 'process.env.NODE_ENV': JSON.stringify(mode),
             }),
             commonjs(),
+            typescript({
+                typescript: require('typescript'),
+                cacheRoot: `${require('temp-dir')}/.rpt2_cache`,
+            }),
             !dev && terser(),
         ],
 

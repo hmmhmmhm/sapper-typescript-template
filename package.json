@@ -7,7 +7,7 @@
         "production-build": "cross-env NODE_OPTIONS=--no-warnings NODE_ENV=production sapper build --legacy",
         "production-start": "cross-env NODE_OPTIONS=--no-warnings NODE_ENV=production node __sapper__/build",
         "lint": "prettier --write ./src/**/*.{ts,js,html,svelte}",
-        "clean": "rm -rf ./__sapper__"
+        "clean": "rm -rf ./__sapper__ && rm -rf ./node_modules/@sapper && npm run export-static"
     },
     "dependencies": {
         "compression": "^1.7.4",
