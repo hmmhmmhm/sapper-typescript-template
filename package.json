@@ -6,7 +6,7 @@
         "export-static": "cross-env NODE_OPTIONS=--no-warnings sapper export --legacy",
         "production-build": "cross-env NODE_OPTIONS=--no-warnings NODE_ENV=production sapper build --legacy",
         "production-start": "cross-env NODE_OPTIONS=--no-warnings NODE_ENV=production node __sapper__/build",
-        "lint": "prettier --write ./src/**/*.{ts,js,html,svelte}",
+        "lint": "prettier --write ./src/**/*.{ts,html,svelte}",
         "clean": "rm -rf ./__sapper__ && rm -rf ./node_modules/@sapper && npm run export-static"
     },
     "dependencies": {

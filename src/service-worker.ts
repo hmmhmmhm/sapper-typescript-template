@@ -1,6 +1,7 @@
 // @ts-ignore
 import { timestamp, files, shell, routes } from '@sapper/service-worker'
-declare var self: ServiceWorkerGlobalScope; export { }
+declare var self: ServiceWorkerGlobalScope
+export {}
 
 const ASSETS = `cache${timestamp}`
 

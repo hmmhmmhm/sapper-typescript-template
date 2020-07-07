@@ -1,3 +1,4 @@
+// * Rollup Modules
 import resolve from 'rollup-plugin-node-resolve'
 import replace from 'rollup-plugin-replace'
 import commonjs from 'rollup-plugin-commonjs'
@@ -6,22 +7,26 @@ import babel from 'rollup-plugin-babel'
 import typescript from 'rollup-plugin-typescript2'
 import { terser } from 'rollup-plugin-terser'
 
+// * Configs
 import config from 'sapper/config/rollup.js'
 import pkg from './package.json'
 
+// * Specity the Build Options
 const mode = process.env.NODE_ENV
 const dev = mode === 'development'
-
 const legacy = !!process.env.SAPPER_LEGACY_BUILD
 const sourcemap = dev ? 'inline' : false
 
+// * Ignore of the sapper dependency warning
 const onwarn = (warning, onwarn) =>
     (warning.code === 'CIRCULAR_DEPENDENCY' && /[/\\]@sapper[/\\]/.test(warning.message)) || onwarn(warning)
 
+// * Specify the Build Paths
 const src = `${process.cwd()}/src`
 let dest = `${process.cwd()}/__sapper__/dev`
 if (!dev) dest = `${process.cwd()}/__sapper__/build`
 
+// * Override Default Configs
 config.client = {
     input: () => {
         return `${src}/client.ts`
@@ -68,6 +73,7 @@ config.serviceworker = {
     },
 }
 
+// * Export the Rollup Config
 export default {
     client: {
         input: config.client.input(),
