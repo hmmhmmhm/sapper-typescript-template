@@ -35,7 +35,7 @@
         "rollup-plugin-terser": "^6.1.0",
         "rollup-plugin-typescript2": "^0.27.1",
         "sapper": "^0.27.16",
-        "svelte": "^3.23.2",
+        "svelte": "^3.49.0",
         "svelte-preprocess": "^4.0.0",
         "temp-dir": "^2.0.0",
         "typescript": "^3.9.6"
